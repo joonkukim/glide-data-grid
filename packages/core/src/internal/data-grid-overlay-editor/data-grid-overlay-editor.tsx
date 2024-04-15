@@ -124,12 +124,15 @@ const DataGridOverlayEditor: React.FunctionComponent<DataGridOverlayEditorProps>
                 event.stopPropagation();
                 event.preventDefault();
                 customMotion.current = [0, 0];
-            } else if (event.key === "Enter" && !event.shiftKey) {
+            } else if (
+                (event.key === "Enter" || (event.nativeEvent.isComposing && event.nativeEvent.code === "Enter")) &&
+                !event.shiftKey
+            ) {
                 event.stopPropagation();
                 event.preventDefault();
                 customMotion.current = [0, 1];
                 save = true;
-            } else if (event.key === "Tab") {
+            } else if (event.key === "Tab" || (event.nativeEvent.isComposing && event.nativeEvent.code === "Tab")) {
                 event.stopPropagation();
                 event.preventDefault();
                 customMotion.current = [event.shiftKey ? -1 : 1, 0];
